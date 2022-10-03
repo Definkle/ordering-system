@@ -29,6 +29,7 @@ specifiers:
   karma-coverage: ~2.2.0
   karma-jasmine: ~5.1.0
   karma-jasmine-html-reporter: ~2.0.0
+  ngx-bootstrap: 9.0.0
   rxjs: ~7.5.0
   tslib: ^2.3.0
   typescript: ~4.7.2
@@ -44,6 +45,7 @@ dependencies:
   '@angular/platform-browser-dynamic': 14.2.4_utakpv4yy4yulu3zbqkiu5no6i
   '@angular/router': 14.2.4_cqdintjzxymf4eniujcvvl2rx4
   '@ngrx/store': 14.3.1_aneyabyii3l2nbepdg3zrprqxa
+  ngx-bootstrap: 9.0.0_mizlbd6apyuyu2kxfdwcdfgj3q
   rxjs: 7.5.7
   tslib: 2.4.0
   zone.js: 0.11.8
@@ -5558,6 +5560,23 @@ packages:
   /neo-async/2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
+
+  /ngx-bootstrap/9.0.0_mizlbd6apyuyu2kxfdwcdfgj3q:
+    resolution: {integrity: sha512-wVwKs1jIASzJrKSPUhOcHY8f39MKyG31SruJdVQ3S/v/PdBVmVuFUJL86Awc8F60di2xD9C4DzzGObkvsHbirw==}
+    peerDependencies:
+      '@angular/animations': ^14.0.0
+      '@angular/common': ^14.0.0
+      '@angular/core': ^14.0.0
+      '@angular/forms': ^14.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+    dependencies:
+      '@angular/animations': 14.2.4_@angular+core@14.2.4
+      '@angular/common': 14.2.4_aneyabyii3l2nbepdg3zrprqxa
+      '@angular/core': 14.2.4_rxjs@7.5.7+zone.js@0.11.8
+      '@angular/forms': 14.2.4_cqdintjzxymf4eniujcvvl2rx4
+      rxjs: 7.5.7
+      tslib: 2.4.0
+    dev: false
 
   /nice-napi/1.0.2:
     resolution: {integrity: sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==}
