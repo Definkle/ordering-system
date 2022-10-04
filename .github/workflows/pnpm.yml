@@ -1,7 +1,6 @@
 name: PNPM CIv2
 on:
-  - push
-  - pull_request
+  push:
 
 jobs:
   cache-and-install:
