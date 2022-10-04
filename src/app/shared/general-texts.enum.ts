@@ -1,4 +1,7 @@
 export enum GeneralTexts {
-  USER = 'user',
-  ADMIN = 'admin'
+  ADMIN = 'admin',
+  ORDER = 'Order',
+  PENDING = 'pending',
+  UPDATE = 'Update',
+  USER = 'user'
 }

@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { User } from '../models/user.model';
 import { createReducer, on } from '@ngrx/store';
-import { setActiveUser, setUsers } from './auth.action';
+import { clearActiveUser, setActiveUser, setUsers } from './auth.action';
 
 export interface AuthState extends EntityState<User> {
   users: User[];
@@ -18,7 +18,10 @@ export const authReducer = createReducer(
   on(setActiveUser, (state, { user }): AuthState => {
     return { ...state, activeUser: user };
   }),
-  on(setUsers, (state, { users }): AuthState => adapter.upsertMany(users, state))
+  on(setUsers, (state, { users }): AuthState => adapter.upsertMany(users, state)),
+  on(clearActiveUser, (state): AuthState => {
+    return { ...state, activeUser: undefined };
+  })
 );
 const {
   selectAll,

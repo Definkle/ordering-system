@@ -4,12 +4,24 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Order } from '../../state/models/order.model';
 import { selectOrders } from '../../state/orders/orders.selector';
-import { addOrder, removeOrder, updateOrder } from '../../state/orders/orders.action';
+import { removeOrder } from '../../state/orders/orders.action';
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  template: `
+    <div class="container">
+      <div class="row">
+        <app-order-form [orderForm]="orderForm"></app-order-form>
+      </div>
+      <div class="row">
+        <app-orders-list
+          [orders$]="orders$"
+          (removeOrder)="onRemoveOrder($event)"
+          (updateOrder)="updateFormValue($event)"
+        ></app-orders-list>
+      </div>
+    </div>
+  `
 })
 export class UserComponent implements OnInit {
   fb = inject(FormBuilder);
@@ -26,23 +38,11 @@ export class UserComponent implements OnInit {
     });
   }
 
-  onAddOrder(item: string): void {
-    if (this.orderForm.valid) {
-      this.store.dispatch(addOrder({ order: { id: Math.random(), item, status: 'pending' } }));
-      this.orderForm.reset();
-    }
-  }
-
   onRemoveOrder(order: Order): void {
     this.store.dispatch(removeOrder({ order }));
   }
 
-  onUpdateOrder(order: Order): void {
+  updateFormValue(order: Order): void {
     this.orderForm.setValue(order);
-  }
-
-  updateOrder(order: Order): void {
-    this.store.dispatch(updateOrder({ order }));
-    this.orderForm.reset();
   }
 }
