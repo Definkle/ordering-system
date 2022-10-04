@@ -11,6 +11,8 @@ import { ordersReducer } from './state/orders/orders.reducer';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
 import { authReducer } from './state/auth/auth.reducer';
+import { OrdersListComponent } from './pages/orders-list/orders-list.component';
+import { OrderFormComponent } from './pages/order-form/order-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { authReducer } from './state/auth/auth.reducer';
     AppRoutingModule,
     StoreModule.forRoot({ users: authReducer, orders: ordersReducer }),
     ReactiveFormsModule,
-
+    OrdersListComponent,
+    OrderFormComponent
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
