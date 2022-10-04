@@ -1,1 +1,7 @@
-<p>admin works!</p>
+<div *ngFor="let order of orders$ | async; let i=index">
+  <span>{{i + 1}}.</span> {{order.item}}
+  <ng-container *ngIf="order.status === 'pending'">
+    <button class="btn btn-primary" (click)="onAcceptOrder(order)">Accept Order</button>
+    <button class="btn btn-danger" (click)="onRejectOrder(order)">Reject Order</button>
+  </ng-container>
+</div>

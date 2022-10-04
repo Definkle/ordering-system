@@ -1,1 +1,12 @@
-<p>login works!</p>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <form [formGroup]="loginForm">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" placeholder="" id="username" formControlName="username">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" placeholder="" id="password" formControlName="password">
+    </form>
+
+    <button class="btn btn-primary" (click)="attemptLogin()">LOGIN</button>
+  </div>
+</div>
