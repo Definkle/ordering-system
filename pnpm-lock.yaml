@@ -17,9 +17,11 @@ specifiers:
   '@angular/platform-browser': ^14.1.0
   '@angular/platform-browser-dynamic': ^14.1.0
   '@angular/router': ^14.1.0
+  '@ngrx/entity': ^14.3.1
   '@ngrx/eslint-plugin': ^14.3.1
   '@ngrx/store': 14.3.1
   '@types/jasmine': ~4.0.0
+  '@types/lodash': ^4.14.186
   '@typescript-eslint/eslint-plugin': 5.37.0
   '@typescript-eslint/parser': 5.37.0
   eslint: 8.22.0
@@ -29,6 +31,7 @@ specifiers:
   karma-coverage: ~2.2.0
   karma-jasmine: ~5.1.0
   karma-jasmine-html-reporter: ~2.0.0
+  lodash: ^4.17.21
   ngx-bootstrap: 9.0.0
   rxjs: ~7.5.0
   tslib: ^2.3.0
@@ -44,7 +47,10 @@ dependencies:
   '@angular/platform-browser': 14.2.4_nkf2vx5k6yribxpkpcpvyqevui
   '@angular/platform-browser-dynamic': 14.2.4_utakpv4yy4yulu3zbqkiu5no6i
   '@angular/router': 14.2.4_cqdintjzxymf4eniujcvvl2rx4
+  '@ngrx/entity': 14.3.1_gaw52bqta45chdyodvihzjr3nm
   '@ngrx/store': 14.3.1_aneyabyii3l2nbepdg3zrprqxa
+  '@types/lodash': 4.14.186
+  lodash: 4.17.21
   ngx-bootstrap: 9.0.0_mizlbd6apyuyu2kxfdwcdfgj3q
   rxjs: 7.5.7
   tslib: 2.4.0
@@ -2013,6 +2019,19 @@ packages:
     resolution: {integrity: sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==}
     dev: true
 
+  /@ngrx/entity/14.3.1_gaw52bqta45chdyodvihzjr3nm:
+    resolution: {integrity: sha512-7YHbJmHEl88IUtw/L34BThaT8kjs3pWPZDVrsJDncvKQUf2NqwiAMSvn6z87OguxUbEmKi4Yqs8vdMGe+a7ZKQ==}
+    peerDependencies:
+      '@angular/core': ^14.0.0
+      '@ngrx/store': 14.3.1
+      rxjs: ^6.5.3 || ^7.5.0
+    dependencies:
+      '@angular/core': 14.2.4_rxjs@7.5.7+zone.js@0.11.8
+      '@ngrx/store': 14.3.1_aneyabyii3l2nbepdg3zrprqxa
+      rxjs: 7.5.7
+      tslib: 2.4.0
+    dev: false
+
   /@ngrx/eslint-plugin/14.3.1_4rv7y5c6xz3vfxwhbrcxxi73bq:
     resolution: {integrity: sha512-dIYRw/oVD6BUVma9QBMc7gdXQUegOBAlrIdOj+sKojdwrwUQsoshQIsRBXccX+CgZt19WdbxCyVMG+6CXAy93A==}
     peerDependencies:
@@ -2246,6 +2265,10 @@ packages:
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
+
+  /@types/lodash/4.14.186:
+    resolution: {integrity: sha512-eHcVlLXP0c2FlMPm56ITode2AgLMSa6aJ05JTTbYbI+7EMkCEE5qk2E41d5g2lCVTqRe0GnnRFurmlCsDODrPw==}
+    dev: false
 
   /@types/mime/3.0.1:
     resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==}
@@ -5241,7 +5264,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /log-symbols/4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}

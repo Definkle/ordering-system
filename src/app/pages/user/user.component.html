@@ -1,1 +1,26 @@
-<p>user works!</p>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Order Form</h5>
+    <form [formGroup]="orderForm">
+      <label for="itemInput">Item</label>
+      <input type="text" class="form-control" placeholder="" id="itemInput" formControlName="item">
+    </form>
+
+    <ng-container *ngIf="!orderForm.value.status; else update">
+      <button class="btn btn-primary mt-2" (click)="onAddOrder(orderForm.value.item)">Order</button>
+    </ng-container>
+    <ng-template #update>
+      <button class="btn btn-primary mt-2" (click)="updateOrder(orderForm.value)">Update</button>
+    </ng-template>
+  </div>
+</div>
+
+<a routerLink="/admin">DOG</a>
+
+<div *ngFor="let order of orders$ | async; let i=index">
+  <span>{{i + 1}}.</span> {{order.item}} {{order.status}}
+  <ng-container *ngIf="order.status === 'pending'">
+    <button class="btn btn-warning" (click)="onUpdateOrder(order)">Update Order</button>
+    <button class="btn btn-danger" (click)="onRemoveOrder(order)">Remove Order</button>
+  </ng-container>
+</div>
