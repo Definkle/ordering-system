@@ -13,6 +13,9 @@ import { AuthGuard } from './auth.guard';
 import { authReducer } from './state/auth/auth.reducer';
 import { OrdersListComponent } from './pages/orders-list/orders-list.component';
 import { OrderFormComponent } from './pages/order-form/order-form.component';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './state/auth/auth.effects';
+import { OrderEffects } from './state/orders/orders.effects';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { OrderFormComponent } from './pages/order-form/order-form.component';
     StoreModule.forRoot({ users: authReducer, orders: ordersReducer }),
     ReactiveFormsModule,
     OrdersListComponent,
-    OrderFormComponent
+    OrderFormComponent,
+    EffectsModule.forRoot([AuthEffects, OrderEffects])
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

@@ -16,6 +16,7 @@ import { removeOrder } from '../../state/orders/orders.action';
       <div class="row">
         <app-orders-list
           [orders$]="orders$"
+          [isUser]="true"
           (removeOrder)="onRemoveOrder($event)"
           (updateOrder)="updateFormValue($event)"
         ></app-orders-list>

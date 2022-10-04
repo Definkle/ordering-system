@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs';
-import { selectByUser } from '../../state/auth/auth.selector';
+import { selectActiveUser, selectByUser } from '../../state/auth/auth.selector';
 import { setActiveUser, setUsers } from '../../state/auth/auth.action';
 import { MockUsersData } from '../../shared/mock-users.data';
-import { GeneralTexts } from '../../shared/general-texts.enum';
+import { getStoredUser } from '../../shared/get-stored-user.data';
 
 @Component({
   selector: 'app-login',
@@ -37,10 +37,18 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+    this.store.select((selectActiveUser)).pipe(take(1)).subscribe(
+      (user) => {
+        const activeUser = Boolean(user) ? user : getStoredUser();
+        if (Boolean(activeUser)) {
+          void this.router.navigate([activeUser?.username as string]);
+        }
+      }
+    );
   }
 
   onLogin(username: string): void {
-    username === GeneralTexts.USER ? this.router.navigate([GeneralTexts.USER]) : this.router.navigate([GeneralTexts.ADMIN]);
+    void this.router.navigate([username]);
     this.loginForm.reset();
   }
 

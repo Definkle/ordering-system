@@ -6,8 +6,8 @@ import { UserComponent } from './pages/user/user.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], },
   { path: 'login', component: LoginComponent },
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] }
 ];
