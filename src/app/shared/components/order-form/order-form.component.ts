@@ -2,22 +2,21 @@ import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { addOrder, updateOrder } from '../../state/orders/orders.action';
-import { Order } from '../../state/models/order.model';
-import { clearActiveUser } from 'src/app/state/auth/auth.action';
-import { Router } from '@angular/router';
-import { GeneralTexts } from '../../shared/general-texts.enum';
+import { addOrder, updateOrder } from '../../../state/orders/orders.action';
+import { Order } from '../../../state/models/order.model';
+import { GeneralTexts } from '../../general-texts.enum';
+import { LogoutButtonComponent } from '../logout-button/logout-button.component';
 
 @Component({
   selector: 'app-order-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, LogoutButtonComponent],
   template: `
-    <div class="card">
+    <div class="row card">
       <div class="card-body">
         <div class="d-flex justify-content-between">
           <h5 class="card-title">Order Form</h5>
-          <button class="btn btn-primary" (click)="onLogout()">Logout</button>
+          <app-logout-button></app-logout-button>
         </div>
         <form [formGroup]="orderForm" (keyup.enter)="buttonOperation">
           <label for="itemInput">Item</label>
@@ -32,7 +31,6 @@ import { GeneralTexts } from '../../shared/general-texts.enum';
 export class OrderFormComponent {
   @Input() orderForm!: FormGroup;
   fb = inject(FormBuilder);
-  router = inject(Router);
   store = inject(Store);
 
   get buttonOperation(): void {
@@ -53,10 +51,5 @@ export class OrderFormComponent {
   onUpdateOrder(order: Order): void {
     this.store.dispatch(updateOrder({ order }));
     this.orderForm.reset();
-  }
-
-  onLogout(): void {
-    this.store.dispatch(clearActiveUser());
-    void this.router.navigate(['']);
   }
 }

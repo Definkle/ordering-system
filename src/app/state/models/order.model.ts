@@ -1,5 +1,5 @@
 export interface Order {
-  id?: number;
+  id: number;
   item: string;
-  status?: 'accepted' | 'rejected' | 'pending';
+  status: 'accepted' | 'rejected' | 'pending';
 }

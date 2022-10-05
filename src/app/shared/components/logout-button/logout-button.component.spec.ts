@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { AdminComponent } from './admin.component';
+import { LogoutButtonComponent } from './logout-button.component';
 
-describe('AdminComponent', () => {
-  let component: AdminComponent;
-  let fixture: ComponentFixture<AdminComponent>;
+describe('LogoutButtonComponent', () => {
+  let component: LogoutButtonComponent;
+  let fixture: ComponentFixture<LogoutButtonComponent>;
   let store: MockStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AdminComponent],
-      imports: [],
+      imports: [LogoutButtonComponent],
+      declarations: [],
       providers: [provideMockStore({})]
     })
     .compileComponents();
-    store = TestBed.inject(MockStore);
-    fixture = TestBed.createComponent(AdminComponent);
+
+    fixture = TestBed.createComponent(LogoutButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

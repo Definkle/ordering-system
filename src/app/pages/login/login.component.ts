@@ -3,10 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs';
-import { selectActiveUser, selectByUser } from '../../state/auth/auth.selector';
-import { setActiveUser, setUsers } from '../../state/auth/auth.action';
-import { MockUsersData } from '../../shared/mock-users.data';
-import { getStoredUser } from '../../shared/get-stored-user.data';
+import { selectByUser } from '../../state/auth/auth.selector';
+import { setActiveUser } from '../../state/auth/auth.action';
 
 @Component({
   selector: 'app-login',
@@ -32,26 +30,23 @@ export class LoginComponent implements OnInit {
   store = inject(Store);
 
   ngOnInit(): void {
-    this.store.dispatch(setUsers({ users: MockUsersData }));
-    this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-    this.store.select((selectActiveUser)).pipe(take(1)).subscribe(
-      (user) => {
-        const activeUser = Boolean(user) ? user : getStoredUser();
-        if (Boolean(activeUser)) {
-          void this.router.navigate([activeUser?.username as string]);
-        }
-      }
-    );
+    this.initForm();
   }
 
+  /**
+   * Navigates user to appropriate route based on their username.
+   * @param username - route and username reference.
+   */
   onLogin(username: string): void {
     void this.router.navigate([username]);
     this.loginForm.reset();
   }
 
+  /**
+   * Validate user credentials. If credentials are valid
+   * then route the user based on their username, If credentials
+   * are invalid display error.
+   */
   attemptLogin(): void {
     this.store.select((selectByUser(this.loginForm.value))).pipe(take(1)).subscribe((userRes) => {
       if (userRes) {
@@ -59,6 +54,17 @@ export class LoginComponent implements OnInit {
         this.store.dispatch(setActiveUser({ user: userRes }));
       }
       //  TODO ADD ERROR HANDLING OF WRONG LOGIN
+    });
+  }
+
+  /**
+   * Initializes login form.
+   * @private
+   */
+  private initForm(): void {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 }

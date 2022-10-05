@@ -9,18 +9,14 @@ import { removeOrder } from '../../state/orders/orders.action';
 @Component({
   selector: 'app-user',
   template: `
-    <div class="container">
-      <div class="row">
-        <app-order-form [orderForm]="orderForm"></app-order-form>
-      </div>
-      <div class="row">
-        <app-orders-list
-          [orders$]="orders$"
-          [isUser]="true"
-          (removeOrder)="onRemoveOrder($event)"
-          (updateOrder)="updateFormValue($event)"
-        ></app-orders-list>
-      </div>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <app-order-form [orderForm]="orderForm"></app-order-form>
+      <app-orders-list
+        [orders$]="orders$"
+        [isUser]="true"
+        (removeOrder)="onRemoveOrder($event)"
+        (updateOrder)="updateFormValue($event)"
+      ></app-orders-list>
     </div>
   `
 })

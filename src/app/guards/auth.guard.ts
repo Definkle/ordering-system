@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of, switchMap } from 'rxjs';
-import { selectActiveUser } from './state/auth/auth.selector';
-import { GeneralTexts } from './shared/general-texts.enum';
-import { User } from './state/models/user.model';
+import { selectActiveUser } from '../state/auth/auth.selector';
+import { User } from '../state/models/user.model';
+import { GeneralTexts } from '../shared/general-texts.enum';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   constructor(private store: Store, private router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-    const storedUserRef = localStorage.getItem('user');
+    const storedUserRef = localStorage.getItem(GeneralTexts.USER);
     const storedUser: User | undefined = storedUserRef !== GeneralTexts.UNDEFINED ? JSON.parse(storedUserRef as string) : undefined;
     return this.store.select((selectActiveUser)).pipe(
       switchMap((user) => {

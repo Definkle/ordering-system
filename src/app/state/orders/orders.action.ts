@@ -15,3 +15,8 @@ export const updateOrder = createAction(
   '[Order Store] Update Order',
   props<{ order: Order }>()
 );
+
+export const loadOrders = createAction(
+  '[Order Store] Load Orders',
+  props<{ orders: Order[] }>()
+);

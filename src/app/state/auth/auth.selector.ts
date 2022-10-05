@@ -2,8 +2,9 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromUsers from './auth.reducer';
 import { User } from '../models/user.model';
 import { find } from 'lodash';
+import { GeneralTexts } from '../../shared/general-texts.enum';
 
-export const selectAuthState = createFeatureSelector<fromUsers.AuthState>('users');
+export const selectAuthState = createFeatureSelector<fromUsers.AuthState>(GeneralTexts.USER);
 
 export const selectActiveUser = createSelector(selectAuthState,
   fromUsers.selectActiveUser);
