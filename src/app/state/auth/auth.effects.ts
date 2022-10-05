@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs';
 import { clearActiveUser, setActiveUser } from './auth.action';
-import { GeneralTexts } from '../../shared/general-texts.enum';
+import { GeneralTexts } from '../../shared/enums/general-texts.enum';
 
 @Injectable()
 export class AuthEffects {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Order } from '../models/order.model';
-import { GeneralTexts } from '../../shared/general-texts.enum';
+import { GeneralTexts } from '../../shared/enums/general-texts.enum';
 
 @Injectable({ providedIn: 'root' })
 export class OrdersService {

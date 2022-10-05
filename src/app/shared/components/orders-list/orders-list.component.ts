@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Order } from '../../../state/models/order.model';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Order } from '../../../state/models/order.model';
+import { selectOrders } from '../../../state/orders/orders.selector';
 
 @Component({
   selector: 'app-orders-list',
@@ -19,17 +21,19 @@ import { Observable } from 'rxjs';
           <span class="col"><h5>{{order.item}}</h5></span>
           <span class="col-2  d-flex justify-content-center"><h5>{{order.status}}</h5></span>
           <ng-container *ngIf="isUser; else admin">
-            <button class="col-2 btn btn-warning" (click)="updateOrder.emit(order)">Update Order</button>
+            <button class="col-2 btn btn-warning" (click)="updateOrder.emit(order)">Edit Order</button>
             <button class="col-2 btn btn-danger" (click)="removeOrder.emit(order)">Remove Order</button>
           </ng-container>
           <ng-template #admin>
             <button class="col-2 btn btn-primary"
                     (click)="acceptOrder.emit(order)"
-                    [disabled]="order.status !== 'pending'">Accept Order
+                    [disabled]="order.status !== 'pending'">
+              Approve Order
             </button>
             <button class="col-2 btn btn-danger"
                     (click)="rejectOrder.emit(order)"
-                    [disabled]="order.status !== 'pending'">Reject Order
+                    [disabled]="order.status !== 'pending'">
+              Reject Order
             </button>
           </ng-template>
         </div>
@@ -44,11 +48,16 @@ import { Observable } from 'rxjs';
     }
   `]
 })
-export class OrdersListComponent {
-  @Input() orders$!: Observable<readonly Order[]>;
+export class OrdersListComponent implements OnInit {
   @Input() isUser!: boolean;
   @Output() updateOrder: EventEmitter<Order> = new EventEmitter();
   @Output() removeOrder: EventEmitter<Order> = new EventEmitter();
   @Output() acceptOrder: EventEmitter<Order> = new EventEmitter();
   @Output() rejectOrder: EventEmitter<Order> = new EventEmitter();
+  store = inject(Store);
+  orders$!: Observable<readonly Order[]>;
+
+  ngOnInit(): void {
+    this.orders$ = this.store.select((selectOrders));
+  }
 }

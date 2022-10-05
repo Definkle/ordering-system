@@ -16,7 +16,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './state/auth/auth.effects';
 import { OrderEffects } from './state/orders/orders.effects';
 import { LogoutButtonComponent } from './shared/components/logout-button/logout-button.component';
-import { GeneralTexts } from './shared/general-texts.enum';
+import { GeneralTexts } from './shared/enums/general-texts.enum';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { GeneralTexts } from './shared/general-texts.enum';
     OrderFormComponent,
     StoreModule.forRoot({ [GeneralTexts.USER]: authReducer, [GeneralTexts.ORDER]: ordersReducer }),
     EffectsModule.forRoot([AuthEffects, OrderEffects]),
-    LogoutButtonComponent
+    LogoutButtonComponent,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

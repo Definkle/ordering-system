@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { addOrder, updateOrder } from '../../../state/orders/orders.action';
 import { Order } from '../../../state/models/order.model';
-import { GeneralTexts } from '../../general-texts.enum';
+import { GeneralTexts } from '../../enums/general-texts.enum';
 import { LogoutButtonComponent } from '../logout-button/logout-button.component';
 
 @Component({
@@ -14,16 +14,16 @@ import { LogoutButtonComponent } from '../logout-button/logout-button.component'
   template: `
     <div class="row card">
       <div class="card-body">
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-center">
           <h5 class="card-title">Order Form</h5>
-          <app-logout-button></app-logout-button>
         </div>
         <form [formGroup]="orderForm" (keyup.enter)="buttonOperation">
           <label for="itemInput">Item</label>
           <input type="text" class="form-control" placeholder="" id="itemInput" formControlName="item">
         </form>
-
-        <button class="btn btn-primary mt-2" (click)="buttonOperation">{{buttonText}}</button>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-primary mt-2" (click)="buttonOperation">{{buttonText}}</button>
+        </div>
       </div>
     </div>
   `

@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, of, switchMap } from 'rxjs';
 import { selectActiveUser } from '../state/auth/auth.selector';
 import { User } from '../state/models/user.model';
-import { GeneralTexts } from '../shared/general-texts.enum';
+import { GeneralTexts } from '../shared/enums/general-texts.enum';
 
 @Injectable({ providedIn: 'root' })
 export class LoginGuard implements CanActivate {
