@@ -25,14 +25,10 @@ import { selectOrders } from '../../../state/orders/orders.selector';
             <button class="col-2 btn btn-danger" (click)="removeOrder.emit(order)">Remove Order</button>
           </ng-container>
           <ng-template #admin>
-            <button class="col-2 btn btn-primary"
-                    (click)="acceptOrder.emit(order)"
-                    [disabled]="order.status !== 'pending'">
+            <button class="col-2 btn btn-primary" (click)="acceptOrder.emit(order)">
               Approve Order
             </button>
-            <button class="col-2 btn btn-danger"
-                    (click)="rejectOrder.emit(order)"
-                    [disabled]="order.status !== 'pending'">
+            <button class="col-2 btn btn-danger" (click)="rejectOrder.emit(order)">
               Reject Order
             </button>
           </ng-template>
