@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { loadOrders } from '../state/orders/orders.action';
-import { GeneralTexts } from '../shared/general-texts.enum';
+import { GeneralTexts } from '../shared/enums/general-texts.enum';
 import { Order } from '../state/models/order.model';
 
 @Injectable({ providedIn: 'root' })

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { setUsers } from '../state/auth/auth.action';
-import { MockUsersData } from '../shared/mock-users.data';
+import { MockUsersData } from '../shared/data/mock-users.data';
 
 @Injectable({ providedIn: 'root' })
 export class UsersResolver implements Resolve<void> {

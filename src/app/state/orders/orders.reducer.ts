@@ -31,4 +31,4 @@ const {
   selectAll,
 } = adapter.getSelectors();
 
-export const selectAllOrders = selectAll;
+export const selectOrders = selectAll;

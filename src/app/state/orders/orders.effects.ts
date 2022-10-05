@@ -4,7 +4,7 @@ import { tap } from 'rxjs';
 import { addOrder, removeOrder, updateOrder } from './orders.action';
 import { Order } from '../models/order.model';
 import { OrdersService } from './orders.service';
-import { GeneralTexts } from '../../shared/general-texts.enum';
+import { GeneralTexts } from '../../shared/enums/general-texts.enum';
 
 @Injectable()
 export class OrderEffects {

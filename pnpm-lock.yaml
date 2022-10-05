@@ -21,6 +21,7 @@ specifiers:
   '@ngrx/entity': ^14.3.1
   '@ngrx/eslint-plugin': ^14.3.1
   '@ngrx/store': 14.3.1
+  '@ngrx/store-devtools': ^14.3.2
   '@types/jasmine': ~4.0.0
   '@types/lodash': ^4.14.186
   '@typescript-eslint/eslint-plugin': 5.37.0
@@ -51,6 +52,7 @@ dependencies:
   '@ngrx/effects': 14.3.1_gaw52bqta45chdyodvihzjr3nm
   '@ngrx/entity': 14.3.1_gaw52bqta45chdyodvihzjr3nm
   '@ngrx/store': 14.3.1_aneyabyii3l2nbepdg3zrprqxa
+  '@ngrx/store-devtools': 14.3.2_2tmuqod5syf75wh6lvpp3zkowm
   '@types/lodash': 4.14.186
   lodash: 4.17.21
   ngx-bootstrap: 9.0.0_mizlbd6apyuyu2kxfdwcdfgj3q
@@ -2064,6 +2066,17 @@ packages:
       - chokidar
       - supports-color
     dev: true
+
+  /@ngrx/store-devtools/14.3.2_2tmuqod5syf75wh6lvpp3zkowm:
+    resolution: {integrity: sha512-lm1BobiHXzBC3tqYNAghCRNfBdIbs4JyfaTO9wqOEoDCh6COvzGLi7tAo9Zjls1REZC1NiIwSw4vKK8OMc+tfA==}
+    peerDependencies:
+      '@ngrx/store': 14.3.2
+      rxjs: ^6.5.3 || ^7.5.0
+    dependencies:
+      '@ngrx/store': 14.3.1_aneyabyii3l2nbepdg3zrprqxa
+      rxjs: 7.5.7
+      tslib: 2.4.0
+    dev: false
 
   /@ngrx/store/14.3.1_aneyabyii3l2nbepdg3zrprqxa:
     resolution: {integrity: sha512-5fKZVxwyawH8wXuYaAkMfPxLJ+GzdXmjWjQtUkMjpa8lsgEBtIs+UdyirgwjBcwYUt0ewp2CM14+Io5eeb8bQA==}

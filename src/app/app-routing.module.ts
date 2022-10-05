@@ -7,7 +7,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
 import { OrderResolver } from './resolvers/orders.resolver';
 import { UsersResolver } from './resolvers/users.resolver';
-import { GeneralTexts } from './shared/general-texts.enum';
+import { GeneralTexts } from './shared/enums/general-texts.enum';
 
 const routes: Routes = [
   { path: '', redirectTo: GeneralTexts.LOGIN, pathMatch: 'full' },
