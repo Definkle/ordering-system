@@ -9,27 +9,33 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { StoreModule } from '@ngrx/store';
 import { ordersReducer } from './state/orders/orders.reducer';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthGuard } from './auth.guard';
 import { authReducer } from './state/auth/auth.reducer';
-import { OrdersListComponent } from './pages/orders-list/orders-list.component';
-import { OrderFormComponent } from './pages/order-form/order-form.component';
+import { OrdersListComponent } from './shared/components/orders-list/orders-list.component';
+import { OrderFormComponent } from './shared/components/order-form/order-form.component';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './state/auth/auth.effects';
+import { OrderEffects } from './state/orders/orders.effects';
+import { LogoutButtonComponent } from './shared/components/logout-button/logout-button.component';
+import { GeneralTexts } from './shared/general-texts.enum';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserComponent,
-    AdminComponent
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ users: authReducer, orders: ordersReducer }),
     ReactiveFormsModule,
     OrdersListComponent,
-    OrderFormComponent
+    OrderFormComponent,
+    StoreModule.forRoot({ [GeneralTexts.USER]: authReducer, [GeneralTexts.ORDER]: ordersReducer }),
+    EffectsModule.forRoot([AuthEffects, OrderEffects]),
+    LogoutButtonComponent
   ],
-  providers: [AuthGuard],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

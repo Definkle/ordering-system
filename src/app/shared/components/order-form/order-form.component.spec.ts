@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { OrderFormComponent } from './order-form.component';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { OrderFormComponent } from './order-form.component';
 
 describe('OrderFormComponent', () => {
   let component: OrderFormComponent;

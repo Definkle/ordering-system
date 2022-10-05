@@ -3,23 +3,26 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of, switchMap } from 'rxjs';
 import { selectActiveUser } from './state/auth/auth.selector';
-import { GeneralTexts } from './shared/general-texts.enum';
+import { getStoredUser } from './shared/get-stored-user.data';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class UserGuard implements CanActivate {
   constructor(private store: Store, private router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
+    const storedUser = getStoredUser();
     return this.store.select((selectActiveUser)).pipe(
       switchMap((user) => {
         const navigateTo = (link: string) => this.router.navigate([link]);
-        if (!Boolean(user)) {
-          void navigateTo('');
+        const activeUser = Boolean(user) ? user : storedUser;
+        const doesPathMatch = route.routeConfig?.path === storedUser?.username || route.routeConfig?.path === user?.username;
+        if (doesPathMatch) {
+          void navigateTo(activeUser?.username as string);
+          return of(doesPathMatch);
         }
-        const isAdmin = user?.username === GeneralTexts.ADMIN;
-        const isUser = user?.username === GeneralTexts.USER;
-        return of(route.routeConfig?.path === GeneralTexts.ADMIN ? isAdmin : isUser);
+        void navigateTo('');
+        return of(false);
       })
     );
   }

@@ -1,27 +1,32 @@
-import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Order } from '../../state/models/order.model';
 import { selectOrders } from '../../state/orders/orders.selector';
 import { updateOrder } from '../../state/orders/orders.action';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
   template: `
-    <div *ngFor="let order of orders$ | async; let i=index">
-      <span>{{i + 1}}.</span> {{order.item}}
-      <ng-container *ngIf="order.status === 'pending'">
-        <button class="btn btn-primary" (click)="onAcceptOrder(order)">Accept Order</button>
-        <button class="btn btn-danger" (click)="onRejectOrder(order)">Reject Order</button>
-      </ng-container>
+    <div class="container">
+      <div class="row">
+        <app-logout-button></app-logout-button>
+        <app-orders-list
+          [orders$]="orders$"
+          [isUser]="false"
+          (acceptOrder)="onAcceptOrder($event)"
+          (rejectOrder)="onRejectOrder($event)"
+        ></app-orders-list>
+      </div>
     </div>
   `
 })
 export class AdminComponent {
+  router = inject(Router);
   orders$: Observable<readonly Order[]>;
 
-  constructor(private fb: FormBuilder, private store: Store) {
+  constructor(private store: Store) {
     this.orders$ = this.store.select((selectOrders));
   }
 
@@ -32,4 +37,5 @@ export class AdminComponent {
   onRejectOrder(order: Order): void {
     this.store.dispatch(updateOrder({ order: { ...order, status: 'rejected' } }));
   }
+
 }
