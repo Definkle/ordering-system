@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './pages/admin/admin.component';
-import { LoginComponent } from './pages/login/login.component';
-import { UserComponent } from './pages/user/user.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
 import { OrderResolver } from './resolvers/orders.resolver';
@@ -11,9 +8,24 @@ import { GeneralTexts } from './shared/enums/general-texts.enum';
 
 const routes: Routes = [
   { path: '', redirectTo: GeneralTexts.LOGIN, pathMatch: 'full' },
-  { path: GeneralTexts.ADMIN, component: AdminComponent, canActivate: [AuthGuard], resolve: [OrderResolver] },
-  { path: GeneralTexts.LOGIN, component: LoginComponent, canActivate: [LoginGuard], resolve: [UsersResolver] },
-  { path: GeneralTexts.USER, component: UserComponent, canActivate: [AuthGuard], resolve: [OrderResolver] }
+  {
+    path: GeneralTexts.ADMIN,
+    loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
+    canActivate: [AuthGuard],
+    resolve: [OrderResolver]
+  },
+  {
+    path: GeneralTexts.LOGIN,
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule),
+    canActivate: [LoginGuard],
+    resolve: [UsersResolver]
+  },
+  {
+    path: GeneralTexts.USER,
+    loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule),
+    canActivate: [AuthGuard],
+    resolve: [OrderResolver]
+  }
 ];
 
 @NgModule({

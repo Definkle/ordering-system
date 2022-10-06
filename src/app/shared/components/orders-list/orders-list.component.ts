@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { selectOrders } from '../../../state/orders/orders.selector';
 
 @Component({
   selector: 'app-orders-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CommonModule],
   template: `
@@ -17,7 +18,7 @@ import { selectOrders } from '../../../state/orders/orders.selector';
           <span class="col-2 d-flex justify-content-center"><h3>Status</h3></span>
           <span class="col-4 d-flex justify-content-center"><h3>Actions</h3></span>
         </div>
-        <div class="row" *ngFor="let order of orders$ | async; let i=index">
+        <div class="row" *ngFor="let order of orders$ | async; trackBy: myTrackingFn">
           <span class="col"><h5>{{order.item}}</h5></span>
           <span class="col-2  d-flex justify-content-center"><h5>{{order.status}}</h5></span>
           <ng-container *ngIf="isUser; else admin">
@@ -44,7 +45,7 @@ import { selectOrders } from '../../../state/orders/orders.selector';
     }
   `]
 })
-export class OrdersListComponent implements OnInit {
+export class OrdersListComponent {
   @Input() isUser!: boolean;
   @Output() updateOrder: EventEmitter<Order> = new EventEmitter();
   @Output() removeOrder: EventEmitter<Order> = new EventEmitter();
@@ -53,7 +54,11 @@ export class OrdersListComponent implements OnInit {
   store = inject(Store);
   orders$!: Observable<readonly Order[]>;
 
-  ngOnInit(): void {
+  constructor() {
     this.orders$ = this.store.select((selectOrders));
+  }
+
+  myTrackingFn<T>(index: number, value: T): T {
+    return value;
   }
 }

@@ -2,7 +2,7 @@ import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testi
 import { OrdersListComponent } from './orders-list.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MockOrdersData } from '../../data/mock-orders.data';
-import { DebugElement } from '@angular/core';
+import { ChangeDetectionStrategy, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { initialState, OrderState } from '../../../state/orders/orders.reducer';
@@ -17,6 +17,8 @@ describe('OrdersListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [OrdersListComponent],
       providers: [provideMockStore({ initialState })]
+    }).overrideComponent(OrdersListComponent, {
+      set: { changeDetection: ChangeDetectionStrategy.Default }
     })
     .compileComponents();
     fixture = TestBed.createComponent(OrdersListComponent);
