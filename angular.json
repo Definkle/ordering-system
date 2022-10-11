@@ -120,6 +120,7 @@
     "packageManager": "pnpm",
     "schematicCollections": [
       "@angular-eslint/schematics"
-    ]
+    ],
+    "analytics": false
   }
 }
